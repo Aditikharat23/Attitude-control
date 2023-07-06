@@ -31,7 +31,7 @@ step(sys)
 figure(2)
 step(sys1)
 %%Applying to nonlinear control
-[t,state] = ode45(@(t,state) grav_nonlinear(t,state,K,I,B),[0 50],[3,4,5,0,0,0]);
+[t,state] = ode45(@(t,state) grav_nonlinear(t,state,K,I,B),[0 40],[3,-4,5,0,0,0]);
 
 control = zeros(length(t),3);
 for i = 1:length(t)
@@ -40,7 +40,13 @@ end
 
 figure(3)
 plot(t,state(:,1:3))
-legend('Psi','theta','phi')
+legend('Yaw','Pitch','Roll')
+xlabel('Time [s]')
+ylabel('Angle [Degrees]')
+grid on
+
 figure(4)
 plot(t,control)
-title('Control')
+title('Control Torque')
+xlabel('Time [s]')
+ylabel('Torque [N]')
